@@ -1,0 +1,47 @@
+<div class="wrapper">
+    <div class="box a">
+        <div class="label">
+            frequency for ({{word}}): {{frequencyForWord}}
+        </div>
+
+        <input type="text" 
+            placeholder="Type word..."
+            [ngModel]="word"
+            (ngModelChange)="setFrequencyFor($event)"> 
+    </div>
+
+    <div class="box b">
+        <div class="label">
+            frequency greater than
+        </div>
+
+        <input 
+            name="n"
+            placeholder="Select threshold..."
+            type="number" 
+            [ngModel]="n" 
+            (ngModelChange)="setMostFrequent($event)">
+    </div>
+
+    <div class="box c">
+        <div class="label">
+            highest frequency : {{highestFrequency}}
+        </div>
+
+        <textarea 
+            rows="15"
+            class="placeholder-padding" 
+            placeholder="Paste text to analyze..."
+            [ngModel]="text" 
+            (ngModelChange)="analyze($event)"></textarea>
+    </div>
+    
+    <div class="box d"> 
+        <div *ngIf="mostFrequentNWords.length === 0" class="empty">
+            No results
+        </div>
+        <div *ngFor="let v of mostFrequentNWords">
+            <span>{{v.getWord()}}: {{v.getFrequency()}}</span>
+        </div>
+    </div>
+</div>
